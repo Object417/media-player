@@ -1,0 +1,13 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "../node_modules/nouislider/dist/nouislider.min.css";
+@import "./styles/inputDuration.css";
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+#mediaPlayer {
+  max-width: 20rem;
+}

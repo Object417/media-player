@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Player</title>
+  <link rel="stylesheet" href="./src/index.css">
+  <script src="./src/index.js" type="module"></script>
+</head>
+
+<body>
+  <div class="card" id="mediaPlayer">
+    <img src="public/imgs/noImg.webp" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">Song Title</h5>
+      <p class="card-text">Author, album</p>
+    </div>
+    <div class="card-footer">
+      <div class="mb-3">
+        <div id="inputDuration" disabled></div>
+      </div>
+      <div class="mb-3 text-center">
+        <button class="btn btn-primary" id="btnPrev" disabled><i class="bi bi-caret-left-fill"></i></button>
+        <button class="btn btn-primary" id="btnPlayPause" disabled><i class="bi bi-play-fill"></i></button>
+        <button class="btn btn-primary" id="btnNext" disabled><i class="bi bi-caret-right-fill"></i></button>
+      </div>
+      <div>
+        <input type="file" class="form-control" id="inputFile" accept="audio/*">
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 start-0 p-3"></div>
+</body>
+
+</html>

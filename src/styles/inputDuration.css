@@ -1,0 +1,50 @@
+#inputDuration {
+  height: 0.5rem;
+}
+#inputDuration:not([disabled]) {
+  cursor: pointer;
+}
+
+#inputDuration .noUi-connect {
+  background: var(--bs-blue);
+}
+
+#inputDuration .noUi-handle {
+  width: 1rem;
+  height: 1rem;
+  right: -0.5rem; /* half the width */
+  border-radius: 50%;
+  background: var(--bs-blue);
+  box-shadow: none;
+  border: none;
+}
+#inputDuration .noUi-handle::before,
+#inputDuration .noUi-handle::after {
+  display: none;
+}
+
+#inputDuration .noUi-handle .noUi-touch-area {
+  position: absolute;
+  width: auto; /* this is important*/
+  height: auto;
+  top: -0.5rem;
+  right: -0.5rem;
+  bottom: -0.5rem;
+  left: -0.5rem;
+  border-radius: 50%;
+}
+#inputDuration .noUi-handle:focus {
+  outline: none;
+}
+#inputDuration:not([disabled]) .noUi-handle:hover .noUi-touch-area,
+#inputDuration:not([disabled]) .noUi-handle:active .noUi-touch-area,
+#inputDuration:not([disabled]) .noUi-handle:focus .noUi-touch-area {
+  opacity: 0.3;
+  background: var(--bs-blue);
+}
+#inputDuration[disabled] .noUi-handle:hover .noUi-touch-area,
+#inputDuration[disabled] .noUi-handle:active .noUi-touch-area,
+#inputDuration[disabled] .noUi-handle:focus .noUi-touch-area {
+  opacity: 0.3;
+  background: var(--bs-gray-900);
+}
