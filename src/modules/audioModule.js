@@ -1,4 +1,4 @@
-// import * as musicMetadata from "../../node_modules/music-metadata-browser/lib/index.js"
+import { parseBlob } from "music-metadata-browser"
 
 function createAudio(file) {
   const audioURL = URL.createObjectURL(file)
@@ -12,27 +12,29 @@ function updateAudio(audioElem, file) {
 }
 
 async function getAudioMetadata(file) {
-  const metadata = await musicMetadata.parseBlob(file)
+  const metadata = await parseBlob(file)
+  console.log(metadata)
 
   const audioTitle = metadata.common.title || "Unknown title"
   const audioArtist = metadata.common.artists?.join(", ") || "Unknown artist"
   const audioAlbum = metadata.common.album || "Unknown album"
-  const audioImg = metadata.common.picture
-    ? URL.createObjectURL(new Blob(metadata.common.picture[0].data.buffer))
-    : "./public/img/noImg.webp"
+  // doesn't work for some reason
+  // const audioImg = metadata.common.picture
+  //   ? URL.createObjectURL(new Blob(metadata.common.picture[0].data.buffer))
+  //   : "./public/img/noImg.webp"
 
   return {
     title: audioTitle,
     artist: audioArtist,
-    album: audioAlbum,
-    img: audioImg
+    album: audioAlbum
+    // img: audioImg
   }
 }
 
-function setAudioMetadata(file, imgElem, titleElem, artistAlbumElem) {
-  const { title, artist, album, img } = getAudioMetadata(file)
+async function setAudioMetadata(file, imgElem, titleElem, artistAlbumElem) {
+  const { title, artist, album /* img */ } = await getAudioMetadata(file)
 
-  imgElem.setAttribute("scr", img)
+  // imgElem.setAttribute("scr", img)
   titleElem.textContent = title
   artistAlbumElem.textContent = `${artist} — ${album}`
 }

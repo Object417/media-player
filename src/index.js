@@ -1,12 +1,25 @@
-import { create as createSlider } from "../node_modules/nouislider/dist/nouislider.min.mjs"
+import { create as createSlider } from "nouislider"
 import {
   createAudio,
   setAudioListeners,
+  getAudioMetadata,
   setAudioMetadata,
   setControlListeners,
   updateAudio,
   updateControls
 } from "./modules/audioModule.js"
+import "./index.scss"
+import { Buffer } from "buffer"
+import process from "process"
+
+if (typeof window !== "undefined") {
+  if (typeof Buffer !== "undefined") {
+    window.Buffer = Buffer
+  }
+  if (typeof process !== "undefined") {
+    window.process = process
+  }
+}
 
 const inputDuration = document.querySelector("#inputDuration")
 const inputFile = document.querySelector("#inputFile")
@@ -56,14 +69,13 @@ inputFile.onchange = (e) => {
   audio.ondurationchange = () => {
     updateControls(audio, inputDuration, btnPlayPause)
   }
-  audio.onloadedmetadata = () => {
-    console.log("Metadata is ready")
-    // setAudioMetadata(
-    //   e.target.files[0],
-    //   playerImg,
-    //   playerTitle,
-    //   playerArtistAlbum
-    // )
+  audio.onloadedmetadata = async () => {
+    setAudioMetadata(
+      e.target.files[0],
+      playerImg,
+      playerTitle,
+      playerArtistAlbum
+    )
   }
 }
 
