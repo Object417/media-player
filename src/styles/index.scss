@@ -1,0 +1,16 @@
+@import "bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: "Rubik Glitch";
+  font-weight: normal;
+  src: url("./fonts/RubikGlitch-Regular.ttf") format("truetype");
+}
+
+body {
+  // background-color: $purple;
+  font-family: "Rubik Glitch", "Roboto", sans-serif;
+}
+
+.card {
+  max-width: 50%;
+}
