@@ -1,12 +1,12 @@
 import "@/styles/index.scss"
-import "@/scripts/musicMetadataBrowserFix"
+// import "@/scripts/musicMetadataBrowserFix"
 
 import iconPrev from "bootstrap-icons/icons/caret-left-fill.svg?raw"
 import iconNext from "bootstrap-icons/icons/caret-right-fill.svg?raw"
 import iconPlay from "bootstrap-icons/icons/play-fill.svg?raw"
 import iconPause from "bootstrap-icons/icons/pause-fill.svg?raw"
 
-import { getAudioMetadata, updateAudio } from "./scripts/audioTools"
+// import { getAudioMetadata, updateAudio } from "./scripts/audioTools"
 
 const inputFile = document.getElementById("inputFile")
 const inputDuration = document.getElementById("inputDuration")
@@ -32,6 +32,6 @@ inputFile.onchange = (e) => {
   }
 
   const audioFile = e.target.files[0]
-  updateAudio(audio, audioFile)
-  getAudioMetadata(audioFile)
+  // updateAudio(audio, audioFile)
+  // getAudioMetadata(audioFile)
 }

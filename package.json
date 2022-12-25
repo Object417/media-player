@@ -6,9 +6,11 @@
   "author": "Object417",
   "license": "MIT",
   "scripts": {
-    "start": "vite serve --open",
-    "dev": "vite dev",
-    "build": "vite build"
+    "start": "vite serve --mode=development --open",
+    "dev": "vite dev --mode=development",
+    "dev:prod": "vite dev --mode=production",
+    "build": "vite build --mode=production",
+    "build:dev": "vite build --mode=development"
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
