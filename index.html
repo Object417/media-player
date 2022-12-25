@@ -8,19 +8,35 @@
   <script src="./src/index.js" type="module"></script>
 </head>
 
-<body>
-  <div class="container">
-    <div class="row">
-
-      <div class="col card">
-        <img class="card-img" src="./imgs/0.jpg" alt="./imgs/0.jpg">
-        <div class="card-body">
-          <p class="card-text">Image from <code>public/imgs/</code></p>
-        </div>
-      </div>
-
+<body class="min-vh-100 d-grid justify-content-center align-items-center">
+  <div class="card" id="mediaPlayer">
+    <div class="ratio ratio-1x1">
+      <!-- Here we're using relative path as from public/ folder -->
+      <img class="card-img-top" src="./src/imgs/no-img.webp" alt="Album cover">
     </div>
+
+    <div class="card-body">
+      <h5 class="card-title">Song title</h5>
+      <p class="card-text">Author &mdash; Album</p>
+    </div>
+
+    <div class="card-footer">
+      <div class="mb-2">
+        <div id="inputDuration"></div>
+      </div>
+      <div class="mb-2 text-center">
+        <button class="btn btn-primary" id="btnPrev" disabled>&#x23ea;</button>
+        <button class="btn btn-primary" id="btnPlayPause" disabled>&#x23f5;</button>
+        <button class="btn btn-primary" id="btnNext" disabled>&#x23e9;</button>
+      </div>
+      <div>
+        <input type="file" class="form-control" id="inputFile" accept="audio/*">
+      </div>
+    </div>
+
   </div>
+
+  <div class="toast-container position-fixed bottom-0 start-0 p-3"></div>
 </body>
 
 </html>

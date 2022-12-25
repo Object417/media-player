@@ -6,13 +6,17 @@
   "author": "Object417",
   "license": "MIT",
   "scripts": {
-    "start": "vite serve",
+    "start": "vite serve --open",
+    "dev": "vite dev",
     "build": "vite build"
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.2",
+    "buffer": "^6.0.3",
     "music-metadata-browser": "^2.5.9",
-    "nouislider": "^15.6.1"
+    "nouislider": "^15.6.1",
+    "process": "^0.11.10"
   },
   "devDependencies": {
     "sass": "^1.57.1",
