@@ -1,9 +1,10 @@
 const { resolve } = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const { inspect } = require("util")
+
 const { SourceMapDevToolPlugin, ProvidePlugin } = require("webpack")
 const { default: merge, mergeWithRules } = require("webpack-merge")
-const { inspect } = require("util")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 // Ha-ha, it doesn't work anymore
 // Maybe, I broke something because I swear it worked!
@@ -17,7 +18,7 @@ const cfgCommon = {
         ? "[name].[contenthash].js"
         : "vendors/[name].js",
     path: resolve(__dirname, "dist/"),
-    publicPath: "auto",
+    // publicPath: "auto",
     assetModuleFilename: "assets/[contenthash][ext][query]",
     clean: true
   },
@@ -45,6 +46,7 @@ const cfgCommon = {
     port: 3000,
     // Enabled HotModuleReplacement. Automatically pushes the plugin
     hot: true,
+    // magicHtml: true,
     client: {
       overlay: {
         errors: true,
@@ -137,7 +139,10 @@ const cfgProd = {
   mode: "production",
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css"
+      filename: (pathData) =>
+        pathData.chunk.name === "main"
+          ? "[name].[contenthash].css"
+          : "styles/[name].css"
     })
   ],
   module: {
