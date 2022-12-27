@@ -1,21 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { list } from "postcss"
+import { addAudio } from "Store/thunks/audioThunks"
 
 const audioSlice = createSlice({
   name: "audio",
   initialState: {
     list: [],
-    playingID: null
+    playingID: null,
+    status: "idle"
   },
   reducers: {
-    addAudio: (state, { payload }) => {
-      state.list.push(payload)
-    },
-    removeAudio: (state, { payload }) => {
+    // typeof payload === "array"
+    // addAudio: (state, { payload }) => {
+    // state.list = state.list.concat(payload)
+    // },
+    // typeof payload === "number" (audioID)
+    deleteAudio: (state, { payload }) => {
       state.list = state.list.filter((audio) => audio.id !== payload)
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(addAudio.pending, (state, action) => {
+        state.status = "pending"
+      })
+      // typeof payload === "array"
+      .addCase(addAudio.fulfilled, (state, action) => {
+        state.status = "fulfilled"
+        state.list = state.list.concat(action.payload)
+      })
+      .addCase(addAudio.rejected, (state, action) => {
+        state.status = "rejected"
+        console.warn(action)
+      })
   }
 })
 
-export const { addAudio, removeAudio } = audioSlice.actions
+export const { deleteAudio } = audioSlice.actions
 export default audioSlice.reducer
