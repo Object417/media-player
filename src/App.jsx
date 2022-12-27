@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import store from "Store/store"
 import { Provider } from "react-redux"
+// FIXME: No need to import all themes
 import { lightTheme, darkTheme } from "./themes"
 import {
   Card,
