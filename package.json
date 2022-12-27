@@ -1,7 +1,7 @@
 {
   "name": "media-player",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Javascript React media player.",
   "private": true,
   "author": "Object417",
   "license": "MIT",
