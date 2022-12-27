@@ -10,6 +10,7 @@
 - [ ] Import and apply the theme asynchronically
 - [ ] Use JSDoc comments
 - [ ] Explore why MUI `<Tabs>` can't be a `<CardHeader>`
+- [ ] Better errors handling with toast messages
 
 ## Redux store
 
