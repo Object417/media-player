@@ -7,3 +7,9 @@
 // @import "@fontsource/roboto/400-italic.css";
 // @import "@fontsource/roboto/500-italic.css";
 // @import "@fontsource/roboto/700-italic.css";
+
+#root {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
