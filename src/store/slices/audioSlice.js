@@ -16,6 +16,10 @@ const audioSlice = createSlice({
     // typeof payload === "number" (audioID)
     deleteAudio: (state, { payload }) => {
       state.list = state.list.filter((audio) => audio.id !== payload)
+    },
+    // payload is audio ID
+    setPlayingID: (state, { payload }) => {
+      state.playingID = payload
     }
   },
   extraReducers: (builder) => {
@@ -35,5 +39,5 @@ const audioSlice = createSlice({
   }
 })
 
-export const { deleteAudio } = audioSlice.actions
+export const { deleteAudio, setPlayingID } = audioSlice.actions
 export default audioSlice.reducer

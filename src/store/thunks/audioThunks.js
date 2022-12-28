@@ -17,9 +17,9 @@ const addAudio = createAsyncThunk("audio/addAudio", async (files, thunkAPI) => {
       id: Date.now(),
       url: URL.createObjectURL(file),
       cover: coverURL,
-      title: common.title || "",
-      artists: common.artists || [],
-      album: common.album || ""
+      title: common.title || "Unknown title",
+      artists: common.artists || ["Unknown artist"],
+      album: common.album || "Unknown album"
     })
   }
 

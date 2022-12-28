@@ -16,6 +16,7 @@ import noImg from "Assets/imgs/no-img.webp"
 import { Add, DragHandle, Delete } from "@mui/icons-material"
 import { addAudio } from "Store/thunks/audioThunks"
 import { deleteAudio } from "Store/slices/audioSlice"
+import { setPlayingID } from "../../store/slices/audioSlice"
 
 function AudioList() {
   const audioList = useSelector((state) => state.audio.list)
@@ -34,13 +35,20 @@ function AudioList() {
     dispatch(deleteAudio(audioID))
   }
 
+  function handleAudioPlay(audioID) {
+    dispatch(setPlayingID(audioID))
+  }
+
   return (
     <List>
       {audioList.length ? (
         audioList.map((audioObj) => (
-          <ListItemButton key={audioObj.id}>
+          <ListItemButton
+            key={audioObj.id}
+            onClick={() => handleAudioPlay(audioObj.id)}
+          >
             <ListItemAvatar>
-              <Avatar src={audioObj.cover || noImg} alt="N" />
+              <Avatar src={audioObj.cover || noImg} />
             </ListItemAvatar>
             <ListItemText
               primary={audioObj.title}
