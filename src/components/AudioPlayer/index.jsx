@@ -1,3 +1,12 @@
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { addAudio } from "Store/thunks/audioThunks"
+import {
+  playingAudioSelector,
+  isPlayingSelector,
+  setIsPlaying
+} from "Store/slices/audioSlice"
+
 import {
   Alert,
   ButtonGroup,
@@ -7,34 +16,43 @@ import {
   IconButton,
   Typography
 } from "@mui/material"
-import React, { useState } from "react"
-import { useSelector } from "react-redux"
-import noImg from "Assets/imgs/no-img.webp"
 import { Pause, PlayArrow } from "@mui/icons-material"
 
+import noImg from "Assets/imgs/no-img.webp"
+import AudioElement from "./AudioElement"
+// import defaultAudio from "Assets/audios/38 - Sweet Darkness.mp3"
+
 function AudioPlayer() {
-  const audioID = useSelector((state) => state.audio.playingID)
-  const audio = useSelector((state) =>
-    state.audio.list.find((audio) => audio.id === audioID)
-  )
+  const dispatch = useDispatch()
 
-  if (!audio || !audio?.title) {
-    return <Alert severity="warning">No audio is playing now</Alert>
-  }
+  const audio = useSelector(playingAudioSelector)
+  const isPlaying = useSelector(isPlayingSelector)
 
-  const [isPlaying, setIsPlaying] = useState(false)
+  // useEffect(() => {
+  // const audioFile = new Blob([defaultAudio])
+  // console.log(defaultAudio)
+  // console.log(new Blob(defaultAudio))
+
+  // dispatch(addAudio([audioFile]))
+  // }, [])
 
   function handlePlayPause() {
-    setIsPlaying(!isPlaying)
+    dispatch(setIsPlaying(!isPlaying))
+  }
+
+  if (!audio) {
+    return <Alert severity="warning">No audio is playing now</Alert>
   }
 
   return (
     <>
-      {/* <audio src={audio.url} isPlaying={isPlaying} /> */}
+      <AudioElement audio={audio} isPlaying={isPlaying} />
       <CardMedia component="img" image={audio.cover || noImg} />
       <CardContent>
-        <Typography>{audio.title}</Typography>
-        <Typography>
+        <Typography variant="h5" component="h5">
+          {audio.title}
+        </Typography>
+        <Typography variant="subtitle1" component="h6">
           {`${audio.artists.join(", ")} — ${audio.album}`}
         </Typography>
       </CardContent>

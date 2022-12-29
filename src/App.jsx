@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import store from "Store/store"
-import { Provider } from "react-redux"
+import { Provider, useDispatch } from "react-redux"
 import {
   Card,
   CardHeader,
@@ -15,9 +15,10 @@ import {
 import { lightTheme, darkTheme } from "./themes"
 import AudioPlayer from "Components/AudioPlayer"
 import AudioList from "Components/AudioList"
+import { addAudio } from "Store/thunks/audioThunks"
 
 function App() {
-  const [activeTab, setActiveTab] = useState("list")
+  const [activeTab, setActiveTab] = useState("player")
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
 
   function handleTabChange(e, newValue) {

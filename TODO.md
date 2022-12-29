@@ -1,5 +1,11 @@
 # To Do
 
+## Bugs
+
+- [ ] Audio stops playing when tab is changed to "list".
+      Possible solution: bring `<AudioElement>` to the top, so it can be rendered
+      all the time, not only when "player" tab is active.
+
 ## General
 
 - [ ] Learn what data types Redux can store
@@ -19,9 +25,9 @@
 ## Audio list
 
 - [ ] Split `AudioList.jsx` into several components
-- [ ] Play the audio when user clicks onto list item
+- [ ] 50/50 Play the audio when user clicks onto list item
 - [ ] Show on the list element icon what song is playing (or paused)
 
 ## Audio player
 
-- [ ] Develop AudioPlayerTab
+- [ ] 50/50 Develop AudioPlayerTab

@@ -104,17 +104,24 @@ const cfgCommon = {
         }
       },
       {
-        test: /\.(png|svg|jpe?g|webp|gif)$/i,
+        test: /\.(jpe?g|png|webp|svg|gif)$/i,
         type: "asset/resource",
         generator: {
           filename: "assets/imgs/[contenthash][ext][query]"
         }
       },
       {
-        test: /\.(woff2?|eot|otf|ttf)$/i,
+        test: /\.(woff2?|ttf|otf|eot)$/i,
         type: "asset/resource",
         generator: {
           filename: "assets/fonts/[contenthash][ext][query]"
+        }
+      },
+      {
+        test: /\.(mp3|flac|wav|ogg)$/i,
+        type: "asset/source",
+        generator: {
+          filename: "assets/audios/[contenthash][ext][query]"
         }
       }
     ]

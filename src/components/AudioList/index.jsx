@@ -15,11 +15,14 @@ import { useDispatch, useSelector } from "react-redux"
 import noImg from "Assets/imgs/no-img.webp"
 import { Add, DragHandle, Delete } from "@mui/icons-material"
 import { addAudio } from "Store/thunks/audioThunks"
-import { deleteAudio } from "Store/slices/audioSlice"
-import { setPlayingID } from "../../store/slices/audioSlice"
+import {
+  deleteAudio,
+  audioListSelector,
+  setPlayingID
+} from "Store/slices/audioSlice"
 
 function AudioList() {
-  const audioList = useSelector((state) => state.audio.list)
+  const audioList = useSelector(audioListSelector)
   const dispatch = useDispatch()
 
   function handleAudioUpload(e) {

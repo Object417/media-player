@@ -9,7 +9,8 @@ const addAudio = createAsyncThunk("audio/addAudio", async (files, thunkAPI) => {
 
     let coverURL = null
     if (common.picture) {
-      let coverFile = new Blob([common.picture[0].data.buffer])
+      // let coverFile = new Blob([common.picture[0].data.buffer])
+      let coverFile = new Blob([common.picture[0].data])
       coverURL = URL.createObjectURL(coverFile)
     }
 
@@ -19,7 +20,8 @@ const addAudio = createAsyncThunk("audio/addAudio", async (files, thunkAPI) => {
       cover: coverURL,
       title: common.title || "Unknown title",
       artists: common.artists || ["Unknown artist"],
-      album: common.album || "Unknown album"
+      album: common.album || "Unknown album",
+      duration: format.duration
     })
   }
 
