@@ -1,3 +1,12 @@
+import React from "react"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  deleteAudio,
+  audioListSelector,
+  setPlayingID
+} from "Store/slices/audioSlice"
+import { addAudio } from "Store/thunks/audioThunks"
+
 import {
   Alert,
   Avatar,
@@ -10,16 +19,9 @@ import {
   ListItemIcon,
   ListItemText
 } from "@mui/material"
-import React from "react"
-import { useDispatch, useSelector } from "react-redux"
-import noImg from "Assets/imgs/no-img.webp"
 import { Add, DragHandle, Delete } from "@mui/icons-material"
-import { addAudio } from "Store/thunks/audioThunks"
-import {
-  deleteAudio,
-  audioListSelector,
-  setPlayingID
-} from "Store/slices/audioSlice"
+
+import noImg from "Assets/imgs/no-img.webp"
 
 function AudioList() {
   const audioList = useSelector(audioListSelector)

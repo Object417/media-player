@@ -10,10 +10,6 @@ const audioSlice = createSlice({
     status: "idle"
   },
   reducers: {
-    // typeof payload === "array"
-    // addAudio: (state, { payload }) => {
-    // state.list = state.list.concat(payload)
-    // },
     // typeof payload === "number" (audioID)
     deleteAudio: (state, { payload }) => {
       state.list = state.list.filter((audio) => audio.id !== payload)
@@ -22,6 +18,7 @@ const audioSlice = createSlice({
     setPlayingID: (state, { payload }) => {
       state.playingID = payload
     },
+    // payload is a boolean
     setIsPlaying: (state, { payload }) => {
       state.isPlaying = payload
     }
