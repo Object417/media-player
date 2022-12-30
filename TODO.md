@@ -2,9 +2,9 @@
 
 ## Bugs
 
-- [ ] Audio stops playing when tab is changed to "list".
-      Possible solution: bring `<AudioElement>` to the top, so it can be rendered
-      all the time, not only when "player" tab is active.
+- [x] Audio stops playing when tab is changed to "list".
+      Possible solution: bring `<AudioElement>` to the top,
+      so it can be rendered all the time, not only when "player" tab is active.
 
 ## General
 
@@ -17,6 +17,7 @@
 - [ ] Use JSDoc comments
 - [ ] Explore why MUI `<Tabs>` can't be a `<CardHeader>`
 - [ ] Better errors handling with toast messages
+- [ ] Load the default audio (from the file from the `src/`)
 
 ## Redux store
 
@@ -31,3 +32,6 @@
 ## Audio player
 
 - [ ] 50/50 Develop AudioPlayerTab
+- [ ] Split into modules
+- [ ] Develop progress bar (the ability to track and change
+      `currentTime` of the audio)

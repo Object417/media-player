@@ -5,8 +5,7 @@ const audioSlice = createSlice({
   name: "audio",
   initialState: {
     list: [],
-    playingID: null,
-    isPlaying: false,
+    playing: { id: null, isPlaying: false },
     status: "idle"
   },
   reducers: {
@@ -16,11 +15,11 @@ const audioSlice = createSlice({
     },
     // payload is audio ID
     setPlayingID: (state, { payload }) => {
-      state.playingID = payload
+      state.playing.id = payload
     },
     // payload is a boolean
     setIsPlaying: (state, { payload }) => {
-      state.isPlaying = payload
+      state.playing.isPlaying = payload
     }
   },
   extraReducers: (builder) => {
@@ -41,8 +40,8 @@ const audioSlice = createSlice({
 })
 
 export const playingAudioSelector = (state) =>
-  state.audio.list.find((audio) => audio.id === state.audio.playingID)
-export const isPlayingSelector = (state) => state.audio.isPlaying
+  state.audio.list.find((audio) => audio.id === state.audio.playing.id)
+export const isPlayingSelector = (state) => state.audio.playing.isPlaying
 export const audioListSelector = (state) => state.audio.list
 
 export const { deleteAudio, setPlayingID, setIsPlaying } = audioSlice.actions

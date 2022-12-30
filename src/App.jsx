@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import store from "Store/store"
 import { Provider, useDispatch } from "react-redux"
+
 import {
   Card,
   CardHeader,
@@ -10,12 +11,11 @@ import {
   ThemeProvider,
   useMediaQuery
 } from "@mui/material"
-
 // FIXME: No need to import all themes
 import { lightTheme, darkTheme } from "./themes"
-import AudioPlayer from "Components/AudioPlayer"
-import AudioList from "Components/AudioList"
-import { addAudio } from "Store/thunks/audioThunks"
+
+import AppCard from "Components/AppCard"
+import AudioElement from "Components/AudioPlayer/AudioElement"
 
 function App() {
   const [activeTab, setActiveTab] = useState("player")
@@ -28,19 +28,8 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
-        <Card style={{ width: "100%", maxWidth: "25rem" }}>
-          {/* <CardHeader> */}
-          <Tabs
-            // component={CardHeader}
-            value={activeTab}
-            onChange={handleTabChange}
-          >
-            <Tab value="player" label="Player" />
-            <Tab value="list" label="List" />
-          </Tabs>
-          {/* </CardHeader> */}
-          {activeTab === "player" ? <AudioPlayer /> : <AudioList />}
-        </Card>
+        <AppCard />
+        <AudioElement />
         <CssBaseline />
       </ThemeProvider>
     </Provider>

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit"
-import audioSlice from "./slices/audioSlice"
+
+import appTabsSlice from "Store/slices/appTabsSlice"
+import audioSlice from "Store/slices/audioSlice"
 
 const store = configureStore({
   reducer: {
-    audio: audioSlice
+    audio: audioSlice,
+    tabs: appTabsSlice
   }
 })
 
-export const audioSelector = (state) => state.audio
 export default store
