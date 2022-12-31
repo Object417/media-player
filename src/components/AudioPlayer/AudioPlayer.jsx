@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-// import { addAudio } from "Store/thunks/audioThunks"
+
 import {
   playingAudioSelector,
   isPlayingSelector,
-  setIsPlaying
+  setIsPlaying,
+  currentTimeSelector,
+  setCurrentTime,
+  displayCurrentTimeSelector,
+  setDisplayCurrentTime,
+  isSlidingSelector,
+  setIsSliding
 } from "Store/slices/audioSlice"
 
 import {
@@ -28,24 +34,28 @@ import {
 } from "@mui/icons-material"
 
 import noImg from "Assets/imgs/no-img.webp"
-// import defaultAudio from "Assets/audios/38 - Sweet Darkness.mp3"
 
 function AudioPlayer() {
   const dispatch = useDispatch()
 
   const playingAudio = useSelector(playingAudioSelector)
   const isPlaying = useSelector(isPlayingSelector)
-
-  // useEffect(() => {
-  // const audioFile = new Blob([defaultAudio])
-  // console.log(defaultAudio)
-  // console.log(new Blob(defaultAudio))
-
-  // dispatch(addAudio([audioFile]))
-  // }, [])
+  const isSliding = useSelector(isSlidingSelector)
+  const currentTime = useSelector(currentTimeSelector)
+  const displayCurrentTime = useSelector(displayCurrentTimeSelector)
 
   function handlePlayPause() {
     dispatch(setIsPlaying(!isPlaying))
+  }
+
+  function handleTimeChange(e, newValue) {
+    dispatch(setIsSliding(false))
+    dispatch(setCurrentTime(newValue))
+  }
+
+  function handleTimeSearch(e, newValue) {
+    dispatch(setIsSliding(true))
+    dispatch(setDisplayCurrentTime(newValue))
   }
 
   if (!playingAudio) {
@@ -64,9 +74,16 @@ function AudioPlayer() {
         </Typography>
       </CardContent>
       <Stack direction="row" spacing={2} alignItems="center" sx={{ px: 2 }}>
-        <Typography>1:16</Typography>
-        <Slider min={0} max={182} defaultValue={76} valueLabelDisplay="auto" />
-        <Typography>3:02</Typography>
+        <Typography>{parseInt(displayCurrentTime)}</Typography>
+        <Slider
+          value={displayCurrentTime}
+          onChange={handleTimeSearch}
+          onChangeCommitted={handleTimeChange}
+          min={0}
+          max={playingAudio.duration}
+          valueLabelDisplay="auto"
+        />
+        <Typography>{parseInt(playingAudio.duration)}</Typography>
       </Stack>
       <CardActions>
         <ButtonGroup style={{ width: "100%", justifyContent: "center" }}>

@@ -4,8 +4,8 @@ import { activeTabSelector, setActiveTab } from "Store/slices/appTabsSlice"
 
 import { Card, Tab, Tabs } from "@mui/material"
 
-import AudioPlayer from "Components/AudioPlayer"
-import AudioList from "Components/AudioList"
+import AudioPlayer from "Components/AudioPlayer/AudioPlayer"
+import AudioList from "Components/AudioList/AudioList"
 
 function AppCard() {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ function AppCard() {
   }
 
   return (
-    <Card style={{ width: "100%", maxWidth: "20rem" }}>
+    <Card style={{ width: "100%", maxWidth: "25rem" }}>
       <Tabs value={activeTab} onChange={handleTabChange}>
         <Tab value="player" label="Player" />
         <Tab value="list" label="List" />

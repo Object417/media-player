@@ -5,6 +5,9 @@
 - [x] Audio stops playing when tab is changed to "list".
       Possible solution: bring `<AudioElement>` to the top,
       so it can be rendered all the time, not only when "player" tab is active.
+- [ ] Current time label must show current audio position,
+      not the `<Slider>` position. When you drag the slider, tooltip must show
+      searching time but the label must still going on and showing real current time
 
 ## General
 

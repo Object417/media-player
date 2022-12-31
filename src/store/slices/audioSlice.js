@@ -5,7 +5,17 @@ const audioSlice = createSlice({
   name: "audio",
   initialState: {
     list: [],
-    playing: { id: null, isPlaying: false },
+    // FIXME: Fix this shit
+    playing: {
+      id: null,
+      isPlaying: false,
+      // Why do I need 2 variables to track the current time?
+      // Well, I don't wanna get into infinity loop caused by updating the
+      // current time which is linked to the <audio> element
+      currentTime: 0, // Updates withing interaction
+      displayCurrentTime: 0, // Updates every frame
+      isSliding: false
+    },
     status: "idle"
   },
   reducers: {
@@ -20,6 +30,16 @@ const audioSlice = createSlice({
     // payload is a boolean
     setIsPlaying: (state, { payload }) => {
       state.playing.isPlaying = payload
+    },
+    // payload is a float
+    setCurrentTime: (state, { payload }) => {
+      state.playing.currentTime = payload
+    },
+    setDisplayCurrentTime(state, { payload }) {
+      state.playing.displayCurrentTime = payload
+    },
+    setIsSliding(state, { payload }) {
+      state.playing.isSliding = payload
     }
   },
   extraReducers: (builder) => {
@@ -39,10 +59,23 @@ const audioSlice = createSlice({
   }
 })
 
+// FIXME: Fix this shit
 export const playingAudioSelector = (state) =>
   state.audio.list.find((audio) => audio.id === state.audio.playing.id)
 export const isPlayingSelector = (state) => state.audio.playing.isPlaying
+export const currentTimeSelector = (state) => state.audio.playing.currentTime
+export const displayCurrentTimeSelector = (state) =>
+  state.audio.playing.displayCurrentTime
+export const isSlidingSelector = (state) => state.audio.playing.isSliding
+
 export const audioListSelector = (state) => state.audio.list
 
-export const { deleteAudio, setPlayingID, setIsPlaying } = audioSlice.actions
+export const {
+  deleteAudio,
+  setPlayingID,
+  setIsPlaying,
+  setCurrentTime,
+  setDisplayCurrentTime,
+  setIsSliding
+} = audioSlice.actions
 export default audioSlice.reducer
