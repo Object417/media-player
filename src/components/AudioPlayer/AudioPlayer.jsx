@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import {
-  playingAudioSelector,
-  isPlayingSelector,
-  setIsPlaying
-} from "Store/slices/audioSlice"
+import { playingAudioSelector } from "Store/slices/audioSlice"
 
 import {
   Alert,
@@ -25,11 +21,7 @@ import AudioControls from "./AudioControls"
 function AudioPlayer() {
   const playingAudio = useSelector(playingAudioSelector)
 
-  // if (!playingAudio) {
-  //   return <Alert severity="warning">No audio is playing now</Alert>
-  // }
-
-  return (
+  return playingAudio ? (
     <>
       <CardMedia component="img" image={playingAudio?.cover || noImg} />
       <CardContent>
@@ -49,6 +41,8 @@ function AudioPlayer() {
         <AudioControls />
       </CardActions>
     </>
+  ) : (
+    <Alert severity="info">No audio is currently playing</Alert>
   )
 }
 

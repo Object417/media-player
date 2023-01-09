@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
+
 import {
   playingAudioSelector,
   isPlayingSelector,
   currentTimeSelector,
   setCurrentTime,
-  setDisplayCurrentTime,
-  isSlidingSelector
+  setDisplayCurrentTime
 } from "Store/slices/audioSlice"
 
 function AudioElement() {
@@ -15,7 +15,6 @@ function AudioElement() {
   const playingAudio = useSelector(playingAudioSelector)
   const isPlaying = useSelector(isPlayingSelector)
   const currentTime = useSelector(currentTimeSelector)
-  const isSliding = useSelector(isSlidingSelector)
 
   const audioElementRef = useRef()
 
@@ -28,9 +27,8 @@ function AudioElement() {
   }, [currentTime])
 
   function handleTimeUpdate(e) {
-    if (!isSliding) {
-      dispatch(setDisplayCurrentTime(audioElementRef.current.currentTime))
-    }
+    const currentTime = Math.floor(audioElementRef.current.currentTime)
+    dispatch(setDisplayCurrentTime(currentTime))
   }
 
   return (

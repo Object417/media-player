@@ -8,6 +8,7 @@
 - [x] Current time label must show current audio position,
       not the `<Slider>` position. When you drag the slider, tooltip must show
       searching time but the label must still be going on and showing real current time
+- [ ] Music continues playing when it has been deleted form the list
 
 ## General
 

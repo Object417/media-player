@@ -19,9 +19,10 @@ function AudioSlider() {
   // console.log("AudioSlider " + renderCounter.current)
   // })
 
-  const displayCurrentTime = useSelector(displayCurrentTimeSelector)
-  const playingAudio = useSelector(playingAudioSelector)
   const dispatch = useDispatch()
+
+  const playingAudio = useSelector(playingAudioSelector)
+  const displayCurrentTime = useSelector(displayCurrentTimeSelector)
 
   const [sliderPos, setSliderPos] = useState(0)
   const [isSliding, setIsSliding] = useState(false)
@@ -35,15 +36,13 @@ function AudioSlider() {
 
   // TODO: Optimize re-renders
   function handleTimeSearch(e, newValue) {
-    !isSliding && setSliderPos(displayCurrentTime)
-    !isSliding && setIsSliding(true)
-
-    newValue !== sliderPos && setSliderPos(newValue)
+    setIsSliding(true)
+    setSliderPos(newValue)
   }
 
   return (
     <Slider
-      value={Math.floor(isSliding ? sliderPos : displayCurrentTime)}
+      value={isSliding ? sliderPos : displayCurrentTime}
       onChange={handleTimeSearch}
       onChangeCommitted={handleTimeChange}
       min={0}

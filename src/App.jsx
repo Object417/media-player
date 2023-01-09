@@ -18,12 +18,7 @@ import AppCard from "Components/AppCard"
 import AudioElement from "Components/AudioPlayer/AudioElement"
 
 function App() {
-  const [activeTab, setActiveTab] = useState("player")
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
-
-  function handleTabChange(e, newValue) {
-    setActiveTab(newValue)
-  }
 
   return (
     <Provider store={store}>

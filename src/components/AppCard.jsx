@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 
-import { Card, Tab, Tabs } from "@mui/material"
+import { Button, Card, Tab, Tabs, Typography } from "@mui/material"
 
-import AudioPlayer from "Components/AudioPlayer/AudioPlayer"
-import AudioList from "Components/AudioList/AudioList"
+import AudioPlayer from "Components/AudioPlayer"
+import AudioList from "Components/AudioList"
 
 function AppCard() {
   const [activeTab, setActiveTab] = useState("player")
