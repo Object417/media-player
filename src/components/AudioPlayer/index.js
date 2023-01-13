@@ -1,2 +1,2 @@
-import AudioPlayer from "./AudioPlayer"
-export default AudioPlayer
+// import AudioPlayer from "./AudioPlayer"
+export { default } from "./AudioPlayer"

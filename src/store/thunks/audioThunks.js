@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { parseBlob } from "music-metadata-browser"
 
-// typeof files === "input[type='file'].files"
+// typeof files === Array
 const addAudio = createAsyncThunk("audio/addAudio", async (files, thunkAPI) => {
   let res = []
   for (let file of files) {

@@ -21,6 +21,16 @@ const audioSlice = createSlice({
     // typeof payload === "number" (audioID)
     deleteAudio: (state, { payload }) => {
       state.list = state.list.filter((audio) => audio.id !== payload)
+
+      //FIXME: Side logic in a reducer
+      if (state.playing.id === payload) {
+        state.playing = {
+          id: null,
+          isPlaying: false,
+          currentTime: 0,
+          displayCurrentTime: 0
+        }
+      }
     },
     // payload is audio ID
     setPlayingID: (state, { payload }) => {

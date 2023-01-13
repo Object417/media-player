@@ -1,2 +1,2 @@
-import AudioList from "./AudioList"
-export default AudioList
+// import AudioList from "./AudioList"
+export { default } from "./AudioList"
